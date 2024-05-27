@@ -7,7 +7,8 @@ def is_authenticated():
     if IS_LOCAL or st.session_state.get("authenticated", False):
         return True
     login()
-    raise ValueError("Not authenticated")
+    st.error("Not authenticated")
+    st.stop()
 
 
 @st.experimental_dialog("Login")
