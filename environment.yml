@@ -10,9 +10,9 @@ dependencies:
       - pylint
       - rich
       - ruff
+      - pytest
       # base
       - streamlit
       - watchdog
       # specific
       - python-dotenv
-
