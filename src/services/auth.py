@@ -1,18 +1,21 @@
+from __future__ import annotations
+
 import streamlit as st
 
 from .constants import APP_PASSWORD, IS_LOCAL
 
 
-def is_authenticated():
+def is_authenticated() -> bool | None:
     if IS_LOCAL or st.session_state.get("authenticated", False):
         return True
     login()
     st.error("Not authenticated")
     st.stop()
+    return None
 
 
 @st.experimental_dialog("Login")
-def login():
+def login() -> None:
     with st.form(key="login_form"):
         password = st.text_input(
             "Password",

@@ -5,3 +5,30 @@ version = "0.1.0"
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
+
+[tool.ruff]
+show-fixes = true
+output-format = "full"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "ISC001", # String concatenation (handled by ruff format)
+    "COM812", # Comments format (handled by ruff format)
+    "N999", # Invalid module name
+    "D211", # No blank lines before class
+    "D212", # Docstring summary in first line
+    "D100", # Missing docstring in public module
+    "D101", # Missing docstring in public class
+    "D102", # Missing docstring in public method
+    "D103", # Missing docstring in public function
+    "D104", # Missing docstring in public package
+    "D105", # Missing docstring in magic method
+    "D106", # Missing docstring in public nested class
+    "D107", # Missing docstring in public init
+]
+
+[tool.pytest.ini_options]
+filterwarnings = [
+  "ignore::DeprecationWarning",
+]
