@@ -12,7 +12,8 @@ def find_widget(widgets_list: Iterable, condition: Callable) -> Any:
     for widget in widgets_list:
         if condition(widget):
             return widget
-    raise ValueError("Widget not found")
+    msg = "Widget not found"
+    raise ValueError(msg)
 
 
 def login(at: AppTest, password: str) -> None:
@@ -32,7 +33,7 @@ def test_login() -> None:
     login(at, constants.APP_PASSWORD)
     toast = find_widget(at.toast, lambda x: x.value == "✅ Logged in")
     assert toast is not None
-    assert at.session_state.authenticated == True
+    assert at.session_state.authenticated is True
 
 
 def test_text() -> None:
