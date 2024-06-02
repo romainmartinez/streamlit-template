@@ -13,6 +13,7 @@ output-format = "full"
 [tool.ruff.lint]
 select = ["ALL"]
 ignore = [
+    "S101", # Use of assert
     "INP001", # __init__.py missing
     "ISC001", # String concatenation (handled by ruff format)
     "COM812", # Comments format (handled by ruff format)
@@ -33,3 +34,4 @@ ignore = [
 filterwarnings = [
   "ignore::DeprecationWarning",
 ]
+addopts = "-s -v --cov=src --cov-fail-under=80"

@@ -16,3 +16,4 @@ dependencies:
       - watchdog
       # specific
       - python-dotenv
+      - pytest-cov
