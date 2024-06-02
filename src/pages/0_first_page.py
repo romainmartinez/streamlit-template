@@ -1,7 +1,7 @@
+import altair as alt
 import streamlit as st
-from services import auth, plot
+from services import auth, constants, fileio, plot
 
-# Page config
 auth.is_authenticated()
 
 st.set_page_config(
@@ -21,12 +21,26 @@ Page description.
 
 plot.table_of_contents(__file__)
 
-# Page parameters
 st.sidebar.header("Parameters")
-st.sidebar.slider("Slider")
+number = st.sidebar.slider("Slider", 0, 100, 50)
 
-# first section
-st.write("## First header")
+st.write("## Section 1")
+st.write(f"The slider value is `{number}`")
+st.write(
+    "See the streamlit [API reference](https://docs.streamlit.io/develop/api-reference)"
+    " and [tutorials](https://docs.streamlit.io/get-started) for more information on"
+    " how to use streamlit.",
+)
 
-# second section
-st.write("## Second header")
+
+st.write("## Section 2")
+cols = st.columns(2)
+feedback = fileio.load_csv(constants.DATA_PATH / "passenger_feedback.csv")
+cols[0].write(feedback)
+cols[1].altair_chart(
+    alt.Chart(feedback)
+    .mark_bar()
+    .encode(alt.X("count()"), alt.Y("Passenger Feedback").title(None))
+    .properties(title="Passenger feedback distribution"),
+    use_container_width=True,
+)
